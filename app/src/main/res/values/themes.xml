@@ -1,0 +1,3 @@
+<item name="colorPrimary">@color/blue_primary</item>
+<item name="colorSecondary">@color/teal_secondary</item>
+<item name="android:windowBackground">@color/background_light</item>

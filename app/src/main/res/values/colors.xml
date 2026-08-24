@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta Ocean Breeze -->
+    <color name="blue_primary">#1B4F72</color>
+    <color name="teal_secondary">#17A2A0</color>
+    <color name="gray_neutral">#8A94A6</color>
+    <color name="coral_accent">#FF6F59</color>
+    <color name="background_light">#F5F7FA</color>
+</resources>
