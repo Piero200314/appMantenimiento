@@ -3,6 +3,7 @@ package com.senati.appmantenimientoempleados;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,9 +15,15 @@ import java.util.List;
 public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.EmpleadoViewHolder> {
 
     private List<Empleado> listaEmpleados;
+    private OnEliminarClickListener listener;
 
-    public EmpleadoAdapter(List<Empleado> listaEmpleados) {
+    public interface OnEliminarClickListener {
+        void onEliminarClick(int position);
+    }
+
+    public EmpleadoAdapter(List<Empleado> listaEmpleados, OnEliminarClickListener listener) {
         this.listaEmpleados = listaEmpleados;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,8 +39,11 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.Emplea
         Empleado emp = listaEmpleados.get(position);
 
         holder.txtNombreItem.setText(emp.getNombre());
-        holder.txtDatosItem.setText("Cel: " + emp.getCelular() + " - DNI: " + emp.getDni());
+        holder.txtDatosItem.setText("Cód: " + emp.getCodigo() + " - Cel: " + emp.getCelular() + " - DNI: " + emp.getDni());
         holder.txtSueldoItem.setText("S/. " + emp.getSueldo());
+
+        holder.btnEliminar.setOnClickListener(v ->
+                listener.onEliminarClick(holder.getAdapterPosition()));
     }
 
     @Override
@@ -43,4 +53,16 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.Emplea
 
     public static class EmpleadoViewHolder extends RecyclerView.ViewHolder {
         ImageView imgEmpleado;
-        TextView txtNombreItem, txtDatosItem,
+        TextView txtNombreItem, txtDatosItem, txtSueldoItem;
+        ImageButton btnEliminar;
+
+        public EmpleadoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imgEmpleado = itemView.findViewById(R.id.imgEmpleado);
+            txtNombreItem = itemView.findViewById(R.id.txtNombreItem);
+            txtDatosItem = itemView.findViewById(R.id.txtDatosItem);
+            txtSueldoItem = itemView.findViewById(R.id.txtSueldoItem);
+            btnEliminar = itemView.findViewById(R.id.btnEliminar);
+        }
+    }
+}

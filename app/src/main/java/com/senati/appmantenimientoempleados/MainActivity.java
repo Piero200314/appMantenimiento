@@ -39,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
         cargarEmpleadosIniciales();
 
         // Configuramos el RecyclerView
-        adaptador = new EmpleadoAdapter(listaEmpleados);
+        adaptador = new EmpleadoAdapter(listaEmpleados, position -> {
+            listaEmpleados.remove(position);
+            adaptador.notifyItemRemoved(position);
+            Toast.makeText(MainActivity.this, "Empleado eliminado", Toast.LENGTH_SHORT).show();
+        });
         recyclerEmpleados.setLayoutManager(new LinearLayoutManager(this));
         recyclerEmpleados.setAdapter(adaptador);
 
